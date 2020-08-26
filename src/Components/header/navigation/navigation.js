@@ -1,7 +1,9 @@
 import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
+import { refs } from './../../../refs';
 
 export const navigationModule = array => {
+  // Створює розмітку li з масиву
   const itemMarkup = item => {
     return `
     <li data-link=${item} class="navigationListItem  ${
@@ -11,9 +13,9 @@ export const navigationModule = array => {
     </li>
     `;
   };
-  console.log(itemMarkup);
 
   const listMarkup = () => {
+    //для кожного елементу масиву додає li, повертає список з цими лі
     const result = array.reduce((acc, item) => {
       acc += itemMarkup(item);
       return acc;
@@ -22,23 +24,23 @@ export const navigationModule = array => {
   };
 
   const setActiveLink = target => {
+    // додає клас на вибраний ел
     const activeElement = document.querySelector('.active');
     activeElement.classList.remove('active');
     target.classList.add('active');
   };
 
   const returnMarkup = async link => {
-    const container = document.querySelector('.container');
     const data = link.toLowerCase();
     switch (data) {
       case 'home':
         const result = await API.getMovies();
         console.dir(result);
         const markup = movieList(result);
-        container.innerHTML = markup;
+        refs.container.innerHTML = markup;
         break;
       case 'library':
-        container.innerHTML = '';
+        refs.container.innerHTML = '';
         break;
 
       default:
@@ -59,7 +61,6 @@ export const navigationModule = array => {
     list.addEventListener('click', getLink);
   };
 
-  const parent = document.querySelector('.navigation');
-  parent.innerHTML = listMarkup();
+  refs.navigation.innerHTML = listMarkup();
   addListeners();
 };
