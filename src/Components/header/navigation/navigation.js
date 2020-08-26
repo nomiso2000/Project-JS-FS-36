@@ -11,6 +11,7 @@ export const navigationModule = array => {
     </li>
     `;
   };
+  console.log(itemMarkup);
 
   const listMarkup = () => {
     const result = array.reduce((acc, item) => {
