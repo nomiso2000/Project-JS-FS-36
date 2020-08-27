@@ -35,7 +35,7 @@ export const navigationModule = array => {
     switch (data) {
       case 'home':
         const result = await API.getMovies();
-        console.dir(result);
+        console.log(result);
         const markup = movieList(result);
         refs.container.innerHTML = markup;
         break;

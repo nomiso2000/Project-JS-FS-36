@@ -23,7 +23,7 @@ export default {
       throw new Error(error);
     }
   },
-  async getMovieByID(id) {
+  async getMovieByID() {
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/trending/movie/${id}/day?api_key=${api_key}`,

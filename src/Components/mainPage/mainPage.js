@@ -11,3 +11,9 @@ const starterMainPage = async () => {
 };
 
 starterMainPage();
+
+export const createMarkup = data => {
+  refs.container.innerHTML = '';
+  const markup = movieList(data);
+  refs.container.insertAdjacentHTML('beforeend', markup);
+};
