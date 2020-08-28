@@ -1,11 +1,28 @@
-import { APIhelpers } from '../../helpers';
-import { movieListItem } from '../movieList/movieListItem/movieListItem';
+import {
+  APIhelpers
+} from '../../helpers';
+import {
+  movieListItem
+} from '../movieList/movieListItem/movieListItem';
 import API from '../../api_services';
-import { movieList } from '../movieList/movieList';
-import { mivieListItem } from '../movieList/movieListItem/movieListItem';
-import { refs } from '../../refs';
-import { singlePage } from '../innerPages/single-film';
-import { navigationModule } from '../header/navigation/navigation';
+import {
+  movieList
+} from '../movieList/movieList';
+import {
+  mivieListItem
+} from '../movieList/movieListItem/movieListItem';
+import {
+  refs
+} from '../../refs';
+import {
+  singlePage
+} from '../innerPages/single-film';
+import {
+  saveToLocalStorage
+} from '../innerPages/ineer_page';
+import {
+  navigationModule
+} from '../header/navigation/navigation';
 
 ///////////////////////////////////
 export async function getId(e) {
@@ -16,10 +33,8 @@ export async function getId(e) {
     const newMurk = singlePage(result.data);
     console.log(result);
     refs.container.innerHTML = newMurk;
-    const button_icon = document.querySelector('.button-icon');
-    button_icon.addEventListener('click', () =>
-      console.log(e.target.closest('[data-id]').dataset.id),
-    );
+    const button_wrapper = document.querySelector('.button-wrapper');
+    button_wrapper.addEventListener('click', (event) => saveToLocalStorage(event, result.data));
   } else return;
 }
 
