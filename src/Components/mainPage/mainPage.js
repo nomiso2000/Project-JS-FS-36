@@ -2,31 +2,50 @@ import { APIhelpers } from '../../helpers';
 import { movieListItem } from '../movieList/movieListItem/movieListItem';
 import API from '../../api_services';
 import { movieList } from '../movieList/movieList';
+import { mivieListItem } from '../movieList/movieListItem/movieListItem';
 import { refs } from '../../refs';
 import { singlePage } from '../innerPages/single-film';
+import { navigationModule } from '../header/navigation/navigation';
+
 ///////////////////////////////////
-function getId() {
-  refs.container.addEventListener('click', async e => {
-    const filmId = e.target.dataset.id;
+export async function getId(e) {
+  if (e.target.closest('[data-id]')) {
+    const filmId = e.target.closest('[data-id]').dataset.id;
+
     const result = await API.getMovieByID(filmId);
     const newMurk = singlePage(result.data);
+    console.log(result);
     refs.container.innerHTML = newMurk;
+<<<<<<< HEAD
     const watchedBtn = document.querySelector('[data-action="watched-films"]');
     watchedBtn.addEventListener('click', console.log(result.data.id));
   });
+=======
+    const button_icon = document.querySelector('.button-icon');
+    button_icon.addEventListener('click', () =>
+      console.log(e.target.closest('[data-id]').dataset.id),
+    );
+  } else return;
+>>>>>>> dev
 }
 
-const starterMainPage = async () => {
+export const starterMainPage = async () => {
   const result = await API.getMovies();
+
   const markup = movieList(result);
-  refs.container.innerHTML = markup;
-  getId();
+
+  refs.container.innerHTML = `<ul class="movie_list">${markup}</ul>`;
+  const movie_list = document.querySelector('.movie_list');
+  movie_list.addEventListener('click', getId);
 };
 
 starterMainPage();
 
-export const createMarkup = data => {
+export function createMarkup(data) {
   refs.container.innerHTML = '';
   const markup = movieList(data);
-  refs.container.insertAdjacentHTML('beforeend', markup);
-};
+  refs.container.insertAdjacentHTML(
+    'beforeend',
+    `<ul class="movie_list">${markup}</ul>`,
+  );
+}

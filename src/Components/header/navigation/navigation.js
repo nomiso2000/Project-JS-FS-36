@@ -1,6 +1,7 @@
 import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
 import { refs } from './../../../refs';
+import { starterMainPage } from '../../mainPage/mainPage';
 
 export const navigationModule = array => {
   // Створює розмітку li з масиву
@@ -34,10 +35,7 @@ export const navigationModule = array => {
     const data = link.toLowerCase();
     switch (data) {
       case 'home':
-        const result = await API.getMovies();
-        console.log(result);
-        const markup = movieList(result);
-        refs.container.innerHTML = markup;
+        starterMainPage();
         break;
       case 'library':
         refs.container.innerHTML = '';
