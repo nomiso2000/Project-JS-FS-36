@@ -17,12 +17,14 @@ export async function getId(e) {
     console.log(result);
     refs.container.innerHTML = newMurk;
     const button_icon = document.querySelector('.button-icon');
-    button_icon.addEventListener('click', () =>
-      console.log(e.target.closest('[data-id]').dataset.id),
-    );
+    //   button_icon.addEventListener('click', () =>
+    //     console.log(e.target.closest('[data-id]').dataset.id),
+    //   );
+    // } else return;
+    const watchedBtn = document.querySelector('[data-action="watched-films"]');
+    watchedBtn.addEventListener('click', console.log(result.data.id));
   } else return;
 }
-
 export const starterMainPage = async () => {
   const result = await API.getMovies();
 
