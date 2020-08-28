@@ -11,6 +11,8 @@ function getId() {
     const result = await API.getMovieByID(filmId);
     const newMurk = singlePage(result.data);
     refs.container.innerHTML = newMurk;
+    const watchedBtn = document.querySelector('[data-action="watched-films"]');
+    watchedBtn.addEventListener('click', console.log(result.data.id));
   });
 }
 
