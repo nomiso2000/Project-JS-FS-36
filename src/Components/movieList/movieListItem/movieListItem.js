@@ -2,7 +2,7 @@ import { APIhelpers } from '../../../helpers';
 export const movieListItem = ({
   title,
   backdrop_path,
-  original_name,
+  original_title,
   poster_path,
   id,
 }) => {
@@ -11,7 +11,7 @@ export const movieListItem = ({
   }
   return `
     <li class="movieListItem" data-id=${id}>
-    <h2>${title || original_name}</h2>
+    <h2>${title ? title : original_title}</h2>
     <img src="${
       APIhelpers.urlForIMG + APIhelpers.imgParams + backdrop_path
     }" alt="">
