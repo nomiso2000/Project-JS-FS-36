@@ -2,6 +2,7 @@ import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
 import { refs } from './../../../refs';
 import { starterMainPage } from '../../mainPage/mainPage';
+import { libFunc } from './navigationBtns';
 
 export const navigationModule = array => {
   // Створює розмітку li з масиву
@@ -9,7 +10,7 @@ export const navigationModule = array => {
     return `
     <li data-link=${item} class="navigationListItem  ${
       item === 'Home' ? 'active' : ''
-    }" >
+    } ${item === 'Home' ? 'js-home' : 'js-library'}" >
     <span>${item.toUpperCase()}</span>
     </li>
     `;
@@ -53,10 +54,19 @@ export const navigationModule = array => {
       returnMarkup(e.target.closest('[data-link]').dataset.link);
     } else return;
   };
-
+  // const libArr = ['a', 'b'];
+  // libFunc(libArr);
   const addListeners = () => {
     const list = document.querySelector('.navigationList');
     list.addEventListener('click', getLink);
+
+    // const libraryBnt = document.querySelector('.js-library');
+
+    // libraryBnt.addEventListener('click', libFunc(libArr));
+    // console.log(libArr);
+
+    // const homeBnt = document.querySelector('.js-home');
+    // homeBnt.addEventListener('click');
   };
 
   refs.navigation.innerHTML = listMarkup();
