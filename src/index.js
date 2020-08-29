@@ -10,4 +10,5 @@ import './Components/library/queue';
 // import './Components/header/logo/';
 const array = ['Home', 'Library'];
 
+import '../src/Components/header/navigation/returnByLogo';
 navigationModule(array);
