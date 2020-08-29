@@ -35,8 +35,8 @@ export const starterMainPage = async () => {
 
   const markup = movieList(result);
 
-  refs.container.innerHTML = `<ul class="movie_list">${markup}</ul>`;
-  const movie_list = document.querySelector('.movie_list');
+  refs.container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
+  const movie_list = document.querySelector('.movies_list');
   movie_list.addEventListener('click', getId);
 };
 
@@ -48,6 +48,6 @@ export function createMarkup(data) {
   const markup = movieList(data);
   refs.container.insertAdjacentHTML(
     'beforeend',
-    `<ul class="movie_list">${markup}</ul>`,
+    `<ul class="movies_list">${markup}</ul>`,
   );
 }

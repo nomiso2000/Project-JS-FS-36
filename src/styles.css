@@ -1,16 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-* {
-  list-style: none;
-}
-.navigationList {
-  font-family: Roboto;
-  font-size: 50px;
-}
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+} */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 ul,
@@ -94,6 +102,73 @@ img {
   background-size: contain;
 }
 
+/* MAIN */
+.container {
+  margin: 0 auto;
+  width: 320px;
+  height: 1140px;
+}
+
+.movieListItem {
+  list-style: none;
+  font-size: 12px;
+  font-weight: 500;
+  font-weight: bold;
+  padding-bottom: 12px;
+  /* display: flex;
+  flex-direction: column; */
+  margin: 0 auto;
+}
+
+.movies_list {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 274px;
+  height: 398px;
+  left: 20px;
+  top: 250px;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin-top: 0;
+  padding-top: 4px;
+  margin-left: 22px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.date {
+  font-size: 12px;
+  color: #ff6b01;
+  margin: 0;
+  position: relative;
+  left: 0px;
+}
+
+.rating {
+  color: white;
+  background: #ff6b01;
+  border-radius: 5px;
+  padding: 2px 9px;
+  margin-left: 20px;
+}
+
+.genres {
+  padding-left: 22px;
+  color: #ff6b01;
+}
+
+/* MAIN */
+
 /* MEDIA MOBILE */
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -116,6 +191,26 @@ img {
   #input {
     width: 324px;
   }
+  .container {
+    width: 768px;
+  }
+
+  .movies_list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  h2 {
+    padding: 4px 0px 0px 0px;
+    margin: 0;
+  }
+  .genres {
+    margin: 0;
+    padding: 3px 0px 0px 0px;
+  }
+  li {
+    margin: 0;
+  }
 }
 
 /* MEDIA DESKTOP */
@@ -130,5 +225,24 @@ img {
 
   #input {
     width: 324px;
+  }
+  .movies_list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .container {
+    width: 1000px;
+  }
+  h2 {
+    padding: 4px 0px 0px 0px;
+    margin: 0;
+  }
+  .genres {
+    margin: 0;
+    padding: 3px 0px 0px 0px;
+  }
+  li {
+    margin: 0;
   }
 }
