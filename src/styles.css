@@ -94,6 +94,30 @@ img {
   background-size: contain;
 }
 
+/* FOOTER */
+
+.footer {
+  display: block;
+  height: 77px;
+  text-align: center;
+  padding: 30px 0 0;
+  background-color: #f7f7f7;
+  color: #545454;
+}
+
+.footer-text {
+   font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+color: #545454;
+}
+
+.footer-link {
+  color: #545454;
+}
+
 /* MEDIA MOBILE */
 
 @media (min-width: 320px) and (max-width: 767px) {
