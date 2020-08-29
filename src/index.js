@@ -6,7 +6,7 @@ import searchAPI from '../src/Components/header/search/search_api';
 import { info, getProps } from './helpers';
 
 import './Components/mainPage/mainPage';
-import './Components/library/library';
+import './Components/library/queue';
 // import './Components/header/logo/';
 const array = ['Home', 'Library'];
 

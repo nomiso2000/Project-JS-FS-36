@@ -1,22 +1,22 @@
 import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
 import { refs } from './../../../refs';
-import { starterMainPage } from '../../mainPage/mainPage';
-
+import { starterMainPage, createMarkup } from '../../mainPage/mainPage';
+import { saveToLocalStorage } from '../../innerPages/ineer_page';
+import { APIhelpers } from '../../../helpers';
+import { movieListItem } from '../../movieList/movieListItem/movieListItem';
 export const navigationModule = array => {
-  // Створює розмітку li з масиву
   const itemMarkup = item => {
     return `
     <li data-link=${item} class="navigationListItem  ${
       item === 'Home' ? 'active' : ''
-    }" >
+    } ${item === 'Home' ? 'js-home' : 'js-library'}" >
     <span>${item.toUpperCase()}</span>
     </li>
     `;
   };
 
   const listMarkup = () => {
-    //для кожного елементу масиву додає li, повертає список з цими лі
     const result = array.reduce((acc, item) => {
       acc += itemMarkup(item);
       return acc;
@@ -25,7 +25,6 @@ export const navigationModule = array => {
   };
 
   const setActiveLink = target => {
-    // додає клас на вибраний ел
     const activeElement = document.querySelector('.active');
     activeElement.classList.remove('active');
     target.classList.add('active');
@@ -39,6 +38,7 @@ export const navigationModule = array => {
         break;
       case 'library':
         refs.container.innerHTML = '';
+
         break;
 
       default:
