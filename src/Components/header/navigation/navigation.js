@@ -37,7 +37,27 @@ export const navigationModule = array => {
         starterMainPage();
         break;
       case 'library':
-        refs.container.innerHTML = '';
+        // refs.container.innerHTML = '';
+        // const watchingArray = JSON.parse(localStorage.getItem('watched'));
+        // console.log(watchingArray);
+        // const newPromises = watchingArray.reduce((acc, id) => {
+        //   acc += API.getMovieByID(id);
+        //   return acc;
+        // }, '');
+        // .then(resolve => {
+        //   console.log(resolve);
+        //   return resolve.data;
+        // });
+
+        // Promise.all([newPromises])
+        //   .then(arr => {
+        //     console.log(arr);
+        //     return arr;
+        //   })
+        //   .then(data => console.log(data));
+        // .then(result => console.log(result));
+        const watchingArray = JSON.parse(localStorage.getItem('watched'));
+        createMarkup(watchingArray);
 
         break;
 

@@ -26,7 +26,7 @@ export async function getId(e) {
     // watchedBtn.addEventListener('click', console.log(result.data.id));
     const button_wrapper = document.querySelector('.button-wrapper');
     button_wrapper.addEventListener('click', event =>
-      saveToLocalStorage(event, result.data.id),
+      saveToLocalStorage(event, result.data),
     );
   } else return;
 }
@@ -42,7 +42,7 @@ export const starterMainPage = async () => {
 
 starterMainPage();
 
-export function createMarkup(...data) {
+export function createMarkup(data) {
   refs.container.innerHTML = '';
   console.log(data);
   const markup = movieList(data);
