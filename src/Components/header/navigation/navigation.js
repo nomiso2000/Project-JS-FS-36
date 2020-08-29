@@ -5,6 +5,12 @@ import { starterMainPage, createMarkup } from '../../mainPage/mainPage';
 import { saveToLocalStorage } from '../../innerPages/ineer_page';
 import { APIhelpers } from '../../../helpers';
 import { movieListItem } from '../../movieList/movieListItem/movieListItem';
+import {
+  hideSearch,
+  showSearch,
+  hideBtns,
+  showBtns,
+} from '../lib_buttons/hidden';
 export const navigationModule = array => {
   const itemMarkup = item => {
     return `
@@ -35,29 +41,15 @@ export const navigationModule = array => {
     switch (data) {
       case 'home':
         starterMainPage();
+        showSearch();
+        hideBtns();
+
         break;
       case 'library':
-        // refs.container.innerHTML = '';
-        // const watchingArray = JSON.parse(localStorage.getItem('watched'));
-        // console.log(watchingArray);
-        // const newPromises = watchingArray.reduce((acc, id) => {
-        //   acc += API.getMovieByID(id);
-        //   return acc;
-        // }, '');
-        // .then(resolve => {
-        //   console.log(resolve);
-        //   return resolve.data;
-        // });
-
-        // Promise.all([newPromises])
-        //   .then(arr => {
-        //     console.log(arr);
-        //     return arr;
-        //   })
-        //   .then(data => console.log(data));
-        // .then(result => console.log(result));
         const watchingArray = JSON.parse(localStorage.getItem('watched'));
         createMarkup(watchingArray);
+        hideSearch();
+        showBtns();
 
         break;
 

@@ -8,6 +8,7 @@ export default {
         `https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}&page=${APIhelpers.page}`,
       );
       return response.data.results;
+      // return response;
     } catch (error) {
       throw new Error(error);
     }

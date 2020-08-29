@@ -18,5 +18,6 @@ export const libFunc = arr => {
   };
 
   const library = document.querySelector('.js-library');
+  console.log('library', library);
   library.insertAdjacentElement('afterbegin', listMarkuBtns());
 };

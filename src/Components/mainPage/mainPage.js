@@ -7,8 +7,9 @@ import { refs } from '../../refs';
 import { singlePage } from '../innerPages/single-film';
 import { navigationModule } from '../header/navigation/navigation';
 import { saveToLocalStorage } from '../innerPages/ineer_page';
+import { Pagination } from '../pagination/pagination';
+import { hideBtns } from '../header/lib_buttons/hidden';
 
-///////////////////////////////////
 export async function getId(e) {
   if (e.target.closest('[data-id]')) {
     const filmId = e.target.closest('[data-id]').dataset.id;
@@ -17,13 +18,6 @@ export async function getId(e) {
     const newMurk = singlePage(result.data);
     console.log(result);
     refs.container.innerHTML = newMurk;
-    // const button_icon = document.querySelector('.button-icon');
-    //   button_icon.addEventListener('click', () =>
-    //     console.log(e.target.closest('[data-id]').dataset.id),
-    //   );
-    // } else return;
-    // const watchedBtn = document.querySelector('[data-action="watched-films"]');
-    // watchedBtn.addEventListener('click', console.log(result.data.id));
     const button_wrapper = document.querySelector('.button-wrapper');
     button_wrapper.addEventListener('click', event =>
       saveToLocalStorage(event, result.data),
@@ -34,6 +28,7 @@ export const starterMainPage = async () => {
   const result = await API.getMovies();
 
   const markup = movieList(result);
+  hideBtns();
 
   refs.container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
   const movie_list = document.querySelector('.movies_list');
