@@ -34,7 +34,7 @@ export const navigationModule = array => {
         const result = await API.getMovies();
         console.dir(result);
         const markup = movieList(result);
-        container.innerHTML = markup;
+        container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
         break;
       case 'library':
         container.innerHTML = '';
