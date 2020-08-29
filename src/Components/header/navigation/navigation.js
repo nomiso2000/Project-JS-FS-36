@@ -5,6 +5,15 @@ import { starterMainPage, createMarkup } from '../../mainPage/mainPage';
 import { saveToLocalStorage } from '../../innerPages/ineer_page';
 import { APIhelpers } from '../../../helpers';
 import { movieListItem } from '../../movieList/movieListItem/movieListItem';
+
+// Olesia
+import {
+  hideSearch,
+  showSearch,
+  hideBtns,
+  showBtns,
+} from '../../lib_buttons/hidden';
+
 export const navigationModule = array => {
   const itemMarkup = item => {
     return `
@@ -35,6 +44,9 @@ export const navigationModule = array => {
     switch (data) {
       case 'home':
         starterMainPage();
+        // Olesia
+        showSearch();
+        hideBtns();
         break;
       case 'library':
         // refs.container.innerHTML = '';
@@ -58,6 +70,9 @@ export const navigationModule = array => {
         // .then(result => console.log(result));
         const watchingArray = JSON.parse(localStorage.getItem('watched'));
         createMarkup(watchingArray);
+        //Olesia
+        hideSearch();
+        showBtns();
 
         break;
 

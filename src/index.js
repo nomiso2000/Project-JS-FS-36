@@ -7,6 +7,11 @@ import { info, getProps } from './helpers';
 
 import './Components/mainPage/mainPage';
 import './Components/library/queue';
+
+// Oloesia
+
+import './Components/lib_buttons/process';
+
 // import './Components/header/logo/';
 const array = ['Home', 'Library'];
 

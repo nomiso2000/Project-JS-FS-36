@@ -8,6 +8,9 @@ import { singlePage } from '../innerPages/single-film';
 import { navigationModule } from '../header/navigation/navigation';
 import { saveToLocalStorage } from '../innerPages/ineer_page';
 
+// Olesia
+import { hideBtns } from '../lib_buttons/hidden';
+
 ///////////////////////////////////
 export async function getId(e) {
   if (e.target.closest('[data-id]')) {
@@ -34,6 +37,9 @@ export const starterMainPage = async () => {
   const result = await API.getMovies();
 
   const markup = movieList(result);
+
+  // Olesia
+  hideBtns();
 
   refs.container.innerHTML = `<ul class="movie_list">${markup}</ul>`;
   const movie_list = document.querySelector('.movie_list');
