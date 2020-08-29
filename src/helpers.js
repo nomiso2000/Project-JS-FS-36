@@ -1,7 +1,7 @@
 export const APIhelpers = {
   baseURL: 'https://image.tmdb.org',
   imgParams: '/t/p/w500/',
-  page: 1,
+  page: 3,
   query: '',
 };
 

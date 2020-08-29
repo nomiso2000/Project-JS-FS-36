@@ -1,6 +1,8 @@
 import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
+import {Pagination} from '../../../Components/pagination/pagination.js'
 
+let totalResults
 export const navigationModule = array => {
   const itemMarkup = item => {
     return `
@@ -25,17 +27,26 @@ export const navigationModule = array => {
     activeElement.classList.remove('active');
     target.classList.add('active');
   };
-
+ 
   const returnMarkup = async link => {
     const container = document.querySelector('.container');
     const data = link.toLowerCase();
     switch (data) {
       case 'home':
         const result = await API.getMovies();
-        console.dir(result);
-        const markup = movieList(result);
+        console.dir(result.results);
+        console.log(result.total_results);
+        totalResults = result.total_results;
+        // console.log(totalResults)
+        // pagination.createArrowLeft();
+        // console.log(pagination.createCurrentPages())
+        // pagination.activePage()
+        // pagination.createArrowRight();
+        // pagination.createDots()
+        Pagination.Init()
+        const markup = movieList(result.results);
         container.innerHTML = markup;
-        break;
+                break;
       case 'library':
         container.innerHTML = '';
         break;
@@ -43,6 +54,7 @@ export const navigationModule = array => {
       default:
         return '';
         break;
+
     }
   };
   const getLink = e => {
@@ -62,3 +74,5 @@ export const navigationModule = array => {
   parent.innerHTML = listMarkup();
   addListeners();
 };
+
+export  {totalResults}

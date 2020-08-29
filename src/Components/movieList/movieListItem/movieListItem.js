@@ -13,7 +13,7 @@ export const movieListItem = ({
     <h2>${title || original_name}</h2>
     <img src="${
       APIhelpers.baseURL + APIhelpers.imgParams + backdrop_path
-    }" alt="">
+    }" width='480' alt="">
   
     </li>
     `;

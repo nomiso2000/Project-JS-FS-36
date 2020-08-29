@@ -7,7 +7,7 @@ export default {
       const response = await axios.get(
         `https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}&page=${APIhelpers.page}`,
       );
-      return response.data.results;
+      return response.data;
     } catch (error) {
       throw new Error(error);
     }
@@ -17,7 +17,7 @@ export default {
       const response = axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${APIhelpers.query}&page=${APIhelpers.page}`,
       );
-      return response.data.results;
+      return response.data;
     } catch (error) {
       throw new Error(error);
     }
@@ -27,7 +27,7 @@ export default {
       const response = axios.get(
         `https://api.themoviedb.org/3/trending/movie/${id}/day?api_key=${api_key}`,
       );
-      return response.data.results;
+      return response.data;
     } catch (error) {
       throw new Error(error);
     }
