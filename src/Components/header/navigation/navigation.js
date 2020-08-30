@@ -1,7 +1,7 @@
 import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
 import { refs } from './../../../refs';
-import { starterMainPage, createMarkup } from '../../mainPage/mainPage';
+import { starterMainPage, createMarkup, getId } from '../../mainPage/mainPage';
 import { saveToLocalStorage } from '../../innerPages/ineer_page';
 import { APIhelpers } from '../../../helpers';
 import { movieListItem } from '../../movieList/movieListItem/movieListItem';
@@ -48,6 +48,8 @@ export const navigationModule = array => {
       case 'library':
         const watchingArray = JSON.parse(localStorage.getItem('watched'));
         createMarkup(watchingArray);
+        const movie_list = document.querySelector('.movies_list');
+        movie_list.addEventListener('click', getId);
         hideSearch();
         showBtns();
 
