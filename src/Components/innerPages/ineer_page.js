@@ -1,8 +1,9 @@
 export function saveToLocalStorage(e, data) {
-  const currentButton = e.target.dataset.action;
+  const button = e.target;
+  const buttonAction = e.target.dataset.action;
   const id = Number.parseInt(e.target.dataset.id);
   let targetArray = '';
-  switch (currentButton) {
+  switch (buttonAction) {
     case 'watched-films':
       targetArray = 'watched';
       break;
@@ -17,11 +18,21 @@ export function saveToLocalStorage(e, data) {
   if (jsonSet) {
     currentArray = JSON.parse(jsonSet);
   }
-
-  if (currentArray.length) {
-    if (currentArray.some(film => film.id === id)) {
-      return;
+  if (button.classList.contains('item-exist')) {
+    localStorage.setItem(
+      targetArray,
+      JSON.stringify(currentArray.filter(film => film.id !== id)),
+    );
+    button.classList.remove('item-exist');
+    button.textContent = `Add to ${targetArray}`;
+  } else {
+    if (currentArray.length) {
+      if (currentArray.some(film => film.id === id)) {
+        return;
+      }
     }
+    localStorage.setItem(targetArray, JSON.stringify([...currentArray, data]));
+    button.classList.add('item-exist');
+    button.textContent = `Remove from ${targetArray}`;
   }
-  localStorage.setItem(targetArray, JSON.stringify([...currentArray, data]));
 }
