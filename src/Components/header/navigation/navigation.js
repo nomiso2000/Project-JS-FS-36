@@ -12,6 +12,9 @@ import {
   showBtns,
 } from '../lib_buttons/hidden';
 import { displayWatched } from '../lib_buttons/process';
+import { addHeaderClass, removeHeaderClass } from '../header';
+import { Pagination } from '../../pagination/pagination';
+
 export const navigationModule = array => {
   const itemMarkup = item => {
     return `
@@ -41,12 +44,14 @@ export const navigationModule = array => {
     const data = link.toLowerCase();
     switch (data) {
       case 'home':
+        removeHeaderClass();
         starterMainPage();
         showSearch();
         hideBtns();
 
         break;
       case 'library':
+        addHeaderClass();
         // const watchingArray = JSON.parse(localStorage.getItem('watched'));
         // createMarkup(watchingArray);
         // const movie_list = document.querySelector('.movies_list');
@@ -54,6 +59,9 @@ export const navigationModule = array => {
         displayWatched();
         hideSearch();
         showBtns();
+        // const sizeOfPagination = Math.ceil(watchingArray.length / 100);
+
+        // Pagination.Init(sizeOfPagination, 'library');
 
         break;
 

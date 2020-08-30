@@ -11,6 +11,7 @@ import { Pagination } from '../pagination/pagination';
 import { hideBtns } from '../header/lib_buttons/hidden';
 
 export async function getId(e) {
+  // Pagination.Clear();
   if (e.target.closest('[data-id]')) {
     const filmId = e.target.closest('[data-id]').dataset.id;
 
@@ -27,7 +28,10 @@ export async function getId(e) {
 }
 export const starterMainPage = async () => {
   const result = await API.getMovies();
-
+  // let totalResults = Math.ceil(result.total_results / 20);
+  // const context = 'mainPage';
+  // Pagination.Init(totalResults, context);
+  console.log(result);
   const markup = movieList(result);
   hideBtns();
 

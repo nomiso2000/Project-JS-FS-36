@@ -1,14 +1,43 @@
 import axios from 'axios';
 import { APIhelpers } from './helpers';
+
 const api_key = '249034089965cfc778893cbdb0f537e5';
+const generes = {
+  info: [],
+};
+export const getGeneres = async () => {
+  generes.info = await axios
+    .get(
+      'https://api.themoviedb.org/3/genre/movie/list?api_key=249034089965cfc778893cbdb0f537e5&language=en-US',
+    )
+    .then(response => response.data.genres);
+  console.log(generes);
+};
+
+export const getGenresList = array => {
+  const mapArray = array.map(item =>
+    generes.info.find(genre => genre.id === item),
+  );
+
+  return mapArray;
+};
+
 export default {
   async getMovies() {
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}&page=${APIhelpers.page}`,
       );
-      return response.data.results;
-      // return response;
+      await getGeneres();
+      const result = response.data.results.map(film => {
+        film.genres = getGenresList(film.genre_ids);
+        return film;
+      });
+
+      console.log(response.data.results);
+
+      console.log(result);
+      return result;
     } catch (error) {
       throw new Error(error);
     }

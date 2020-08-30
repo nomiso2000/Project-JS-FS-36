@@ -15,7 +15,7 @@ export const singlePage = ({
   }
   return `<section class="single-page" data-id="${id}">
     <div class="poster-wrapper">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="">
+      <img class="poster img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="">
     </div>
     <div class="description-wrapper">
       <h2 class="film-title">${title}</h2>
