@@ -11,28 +11,53 @@ import { Pagination } from '../pagination/pagination';
 import { hideBtns } from '../header/lib_buttons/hidden';
 
 export async function getId(e) {
-  // Pagination.Clear();
   if (e.target.closest('[data-id]')) {
     const filmId = e.target.closest('[data-id]').dataset.id;
 
     const result = await API.getMovieByID(filmId);
-    console.log(result);
     const newMurk = singlePage(result.data);
-    console.log(result);
+
     refs.container.innerHTML = newMurk;
+    const watchedBtn = document.querySelector('[data-action="watched-films"]');
+    const queueBtn = document.querySelector('[data-action="queue-films"]');
+    let currentArray = [];
+    let jsonSet = localStorage.getItem('watched');
+    if (jsonSet) {
+      currentArray = JSON.parse(jsonSet);
+    }
+    if (currentArray.find(film => film.id === Number.parseInt(filmId))) {
+      watchedBtn.classList.add('item-exist');
+      watchedBtn.textContent = `Remove to watched`;
+    } else {
+      watchedBtn.classList.remove('item-exist');
+      watchedBtn.textContent = `Add from watched`;
+    }
+    currentArray = [];
+    jsonSet = localStorage.getItem('queue');
+    if (jsonSet) {
+      currentArray = JSON.parse(jsonSet);
+    }
+    if (currentArray.find(film => film.id === Number.parseInt(filmId))) {
+      queueBtn.classList.add('item-exist');
+      queueBtn.textContent = `Remove to queue`;
+    } else {
+      queueBtn.classList.remove('item-exist');
+      queueBtn.textContent = `Add from queue`;
+    }
     const button_wrapper = document.querySelector('.button-wrapper');
     button_wrapper.addEventListener('click', event =>
       saveToLocalStorage(event, result.data),
     );
   } else return;
 }
+
 export const starterMainPage = async () => {
-  const result = await API.getMovies();
-  // let totalResults = Math.ceil(result.total_results / 20);
-  // const context = 'mainPage';
-  // Pagination.Init(totalResults, context);
-  console.log(result);
-  const markup = movieList(result);
+  const result = await API.getMoviesForPlag();
+  let totalResults = Math.ceil(result.data.total_results / 20);
+  const context = 'mainPage';
+  Pagination.Init(totalResults, context);
+  const markupResult = await API.getMovies();
+  const markup = movieList(markupResult);
   hideBtns();
 
   refs.container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
@@ -44,7 +69,6 @@ starterMainPage();
 
 export function createMarkup(data) {
   refs.container.innerHTML = '';
-  console.log(data);
   const markup = movieList(data);
   refs.container.insertAdjacentHTML(
     'beforeend',

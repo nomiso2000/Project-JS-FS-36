@@ -9,7 +9,6 @@ export const displayWatched = () => {
   // mainContainer.appendChild(container);
   watchedBtn.classList.add('active_btn');
   queueBtn.classList.remove('active_btn');
-  console.log(watchedBtn);
   const filmsWatched = [...JSON.parse(localStorage.getItem('watched'))];
   createMarkup(filmsWatched);
   const movie_list = document.querySelector('.movies_list');

@@ -11,7 +11,7 @@ import { createMarkup, getId } from '../mainPage/mainPage.js';
 export const Pagination = {
   code: '',
   size: 0, // pages size
-  page: 1, // selected page
+  page: APIhelpers.page, // selected page
   step: 2, // pages before and after current
   context: '',
   resultsQuery: [],
@@ -113,7 +113,6 @@ export const Pagination = {
 
     if (Pagination.context === 'search_api') {
       APIhelpers.query = Pagination.resultQuery;
-      console.log(Pagination.resultQuery);
       async function fun() {
         const data = await getMovieByQuery.getMovieByQuery();
 
@@ -193,11 +192,9 @@ export const Pagination = {
 
   Clear: function () {
     document.getElementById('pagination').innerHTML = '';
-    console.log(document.getElementById('pagination'));
   },
 
   Init: function (size, context, resultQuery) {
-    console.log('sss');
     Pagination.Clear();
     Pagination.context = context;
     Pagination.size = size;

@@ -11,7 +11,6 @@ export const getGeneres = async () => {
       'https://api.themoviedb.org/3/genre/movie/list?api_key=249034089965cfc778893cbdb0f537e5&language=en-US',
     )
     .then(response => response.data.genres);
-  console.log(generes);
 };
 
 export const getGenresList = array => {
@@ -34,10 +33,18 @@ export default {
         return film;
       });
 
-      console.log(response.data.results);
-
-      console.log(result);
       return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  async getMoviesForPlag() {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}&page=${APIhelpers.page}`,
+      );
+
+      return response;
     } catch (error) {
       throw new Error(error);
     }
@@ -48,7 +55,7 @@ export default {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${APIhelpers.query}&page=${APIhelpers.page}`,
       );
-      return response.data.results;
+      return response;
     } catch (error) {
       throw new Error(error);
     }

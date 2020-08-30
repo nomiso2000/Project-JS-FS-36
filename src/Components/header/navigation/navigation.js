@@ -48,20 +48,20 @@ export const navigationModule = array => {
         starterMainPage();
         showSearch();
         hideBtns();
+        APIhelpers.page = 1;
 
         break;
       case 'library':
         addHeaderClass();
-        // const watchingArray = JSON.parse(localStorage.getItem('watched'));
-        // createMarkup(watchingArray);
-        // const movie_list = document.querySelector('.movies_list');
-        // movie_list.addEventListener('click', getId);
         displayWatched();
         hideSearch();
         showBtns();
-        // const sizeOfPagination = Math.ceil(watchingArray.length / 100);
 
-        // Pagination.Init(sizeOfPagination, 'library');
+        const watchingArray = JSON.parse(localStorage.getItem('watched'));
+
+        const sizeOfPagination = Math.ceil(watchingArray.length / 100);
+
+        Pagination.Init(sizeOfPagination, 'library');
 
         break;
 

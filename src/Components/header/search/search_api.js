@@ -26,20 +26,24 @@ export const getGenresList = array => {
 const searchInput = document.querySelector('#search-form');
 searchInput.addEventListener('submit', setQuery);
 document.querySelector('.movieList');
-async function setQuery() {
+export async function setQuery() {
   event.preventDefault();
   const query = event.currentTarget.input.value;
   APIhelpers.query = query;
   const data = await getMovieByQuery.getMovieByQuery();
-  console.log(data);
+
   await getGeneres();
-  const result = data.map(film => {
+  const result = data.data.results.map(film => {
     film.genres = getGenresList(film.genre_ids);
+    console.log(film);
     return film;
   });
 
   createMarkup(result);
-  // Pagination.Init(totalResults, context, APIhelpers.query);
+  let totalResults = data.data.total_pages;
+  const context = 'search_api';
+  console.log(APIhelpers.query);
+  Pagination.Init(totalResults, context, APIhelpers.query);
   const movie_list = document.querySelector('.movies_list');
   movie_list.addEventListener('click', getId);
 }
