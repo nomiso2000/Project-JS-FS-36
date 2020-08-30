@@ -23,6 +23,8 @@ export const navigationModule = array => {
     `;
   };
 
+  const header = document.querySelector('.header');
+
   const listMarkup = () => {
     const result = array.reduce((acc, item) => {
       acc += itemMarkup(item);
@@ -68,6 +70,14 @@ export const navigationModule = array => {
       setActiveLink(element);
       returnMarkup(e.target.closest('[data-link]').dataset.link);
     } else return;
+
+    let value = e.target.innerText;
+    if (value === 'LIBRARY') {
+      header.classList.add('new_image');
+      console.log('added');
+    } else {
+      header.classList.remove('new_image');
+    }
   };
 
   const addListeners = () => {

@@ -60,6 +60,15 @@ img {
   margin-bottom: 20px;
 }
 
+.new_image {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(./img/img_header/header_bckg_library.jpg);
+}
+
 /* .overlay {
   width: 100%;
   height: 100%;
@@ -168,9 +177,9 @@ img {
 /* .navigationListItem {
   cursor: pointer;
 } */
-.navigationListItem.active {
+/* .navigationListItem.active {
   border-bottom: 3px solid #ff6b01;
-}
+} */
 
 /* MAIN */
 .container {
@@ -445,6 +454,15 @@ h3 {
       ),
       url(./img/img_header/header_bckg1024.jpg);
   }
+
+  .new_image {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg_library768.jpg);
+  }
   .logo {
     width: 175px;
   }
@@ -500,6 +518,15 @@ h3 {
         rgba(0, 0, 0, 0.56)
       ),
       url(./img/img_header/header_bckg1024.jpg);
+  }
+
+  .new_image {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg_library1024.jpg);
   }
 
   .header__container {
