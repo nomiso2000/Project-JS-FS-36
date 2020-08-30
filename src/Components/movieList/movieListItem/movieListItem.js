@@ -11,6 +11,9 @@ export const movieListItem = ({
   if (release_date === undefined) {
     release_date = 'Unreleased yet';
   }
+  if (poster_path === null) {
+    poster_path = '/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg';
+  }
   return `
     <li class="movieListItem" data-id=${id}>
     <div class="image">

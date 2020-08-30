@@ -15,6 +15,7 @@ export async function getId(e) {
     const filmId = e.target.closest('[data-id]').dataset.id;
 
     const result = await API.getMovieByID(filmId);
+    console.log(result);
     const newMurk = singlePage(result.data);
     console.log(result);
     refs.container.innerHTML = newMurk;
