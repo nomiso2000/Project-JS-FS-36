@@ -1,16 +1,20 @@
 import { APIhelpers } from '../../helpers';
 import API from '../../api_services';
-import { totalResults } from '../header/navigation/navigation.js';
-
+// import { totalResults } from '../mainPage/mainPage.js';
+// import '../pagination/pagination.css'
 import { info, getProps } from '../../helpers';
+import { starterMainPage } from '../mainPage/mainPage.js';
+import { setQuery } from '../header/search/search_api.js';
+import getMovieByQuery from '../../api_services';
+import { createMarkup, getId } from '../mainPage/mainPage.js';
 
 export const Pagination = {
   code: '',
-  size: function () {
-    return Math.ceil(totalResults / 9);
-  }, // pages size
-  page: APIhelpers.page, // selected page
+  size: 0, // pages size
+  page: 1, // selected page
   step: 2, // pages before and after current
+  context: '',
+  resultsQuery: [],
 
   // add pages by number (from [s] to [f])
   Add: function (s, f) {
@@ -21,10 +25,12 @@ export const Pagination = {
 
   // add last page with separator
   Last: function () {
+    getProps();
+
     if (info.isMobile) {
       return;
     }
-    Pagination.code += '<i>...</i><a>' + Pagination.size() + '</a>';
+    Pagination.code += '<i>...</i><a>' + Pagination.size + '</a>';
   },
 
   // add first page with separator
@@ -37,11 +43,30 @@ export const Pagination = {
 
   // change page
   Click: function () {
+    //  Pagination.page=1
+
     Pagination.page = +this.innerHTML;
     Pagination.Start();
 
-    APIhelpers.page = Number(event.target.textContent);
-    API.getMovies()
+    APIhelpers.page = Pagination.page;
+    // APIhelpers.page = Number(event.target.textContent);
+    if (Pagination.context === 'mainPage') {
+      starterMainPage();
+    }
+
+    if (Pagination.context === 'search_api') {
+      APIhelpers.query = Pagination.resultQuery;
+      async function fun() {
+        const data = await getMovieByQuery.getMovieByQuery();
+
+        createMarkup(data.results);
+        const movie_list = document.querySelector('.movies_list');
+        movie_list.addEventListener('click', getId);
+      }
+      fun();
+    }
+
+    Pagination.context = '';
   },
 
   // previous page
@@ -51,15 +76,55 @@ export const Pagination = {
       Pagination.page = 1;
     }
     Pagination.Start();
+    APIhelpers.page = Pagination.page;
+    // APIhelpers.page = Number(event.target.textContent);
+    if (Pagination.context === 'mainPage') {
+      starterMainPage();
+    }
+
+    if (Pagination.context === 'search_api') {
+      APIhelpers.query = Pagination.resultQuery;
+      async function fun() {
+        const data = await getMovieByQuery.getMovieByQuery();
+
+        createMarkup(data.results);
+        const movie_list = document.querySelector('.movies_list');
+        movie_list.addEventListener('click', getId);
+      }
+      fun();
+    }
+
+    // Pagination.context ='';
   },
 
   // next page
   Next: function () {
     Pagination.page++;
-    if (Pagination.page > Pagination.size()) {
-      Pagination.page = Pagination.size();
+
+    if (Pagination.page > Pagination.size) {
+      Pagination.page = Pagination.size;
     }
     Pagination.Start();
+    APIhelpers.page = Pagination.page;
+    // APIhelpers.page = Number(event.target.textContent);
+    if (Pagination.context === 'mainPage') {
+      starterMainPage();
+    }
+
+    if (Pagination.context === 'search_api') {
+      APIhelpers.query = Pagination.resultQuery;
+      console.log(Pagination.resultQuery);
+      async function fun() {
+        const data = await getMovieByQuery.getMovieByQuery();
+
+        createMarkup(data.results);
+        const movie_list = document.querySelector('.movies_list');
+        movie_list.addEventListener('click', getId);
+      }
+      fun();
+    }
+
+    // Pagination.context ='';
   },
 
   // binding pages
@@ -80,7 +145,7 @@ export const Pagination = {
 
   // find pagination type
   Start: function () {
-    if (Pagination.size() < Pagination.step * 2 + 6) {
+    if (Pagination.size < Pagination.step * 2 + 6) {
       Pagination.Add(1, Pagination.size + 1);
     } else if (Pagination.page < Pagination.step * 2 + 1) {
       if (info.isMobile) {
@@ -89,11 +154,11 @@ export const Pagination = {
         Pagination.Add(1, Pagination.step * 2 + 4);
       }
       Pagination.Last();
-    } else if (Pagination.page > Pagination.size() - Pagination.step * 2) {
+    } else if (Pagination.page > Pagination.size - Pagination.step * 2) {
       Pagination.First();
       Pagination.Add(
-        Pagination.size() - Pagination.step * 2 - 2,
-        Pagination.size() + 1,
+        Pagination.size - Pagination.step * 2 - 2,
+        Pagination.size + 1,
       );
     } else {
       Pagination.First();
@@ -116,9 +181,9 @@ export const Pagination = {
   // create skeleton
   Create: function (e) {
     var html = [
-      '<div class="arrowLeftWrapper"><img class="al" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjY2NjYgOEgzLjMzMzI1IiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEuMzMzMzMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNy45OTk5MiAxMi42NjY3TDMuMzMzMjUgOC4wMDAwNEw3Ljk5OTkyIDMuMzMzMzciIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS4zMzMzMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo="></></div>', // previous button
+      '<div class="arrowLeftWrapper"><img id="al" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjY2NjYgOEgzLjMzMzI1IiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEuMzMzMzMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNy45OTk5MiAxMi42NjY3TDMuMzMzMjUgOC4wMDAwNEw3Ljk5OTkyIDMuMzMzMzciIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS4zMzMzMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo="></></div>', // previous button
       '<span class="pages_list"></span>', // pagination container
-      '<div class="arrowRightWrapper"><img class="ar" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zLjMzMzI5IDhIMTIuNjY2NiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxLjMzMzMzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4NCjxwYXRoIGQ9Ik03Ljk5OTk2IDEyLjY2NjdMMTIuNjY2NiA4LjAwMDA0TDcuOTk5OTYgMy4zMzMzNyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxLjMzMzMzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4NCjwvc3ZnPg0K"></></div>', // next button
+      '<div class="arrowRightWrapper"><img id="ar" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zLjMzMzI5IDhIMTIuNjY2NiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxLjMzMzMzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4NCjxwYXRoIGQ9Ik03Ljk5OTk2IDEyLjY2NjdMMTIuNjY2NiA4LjAwMDA0TDcuOTk5OTYgMy4zMzMzNyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxLjMzMzMzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4NCjwvc3ZnPg0K"></></div>', // next button
     ];
 
     e.innerHTML = html.join('');
@@ -126,8 +191,21 @@ export const Pagination = {
     Pagination.Buttons(e);
   },
 
-  Init: function (data) {
-    Pagination.Create(document.getElementById('pagination'));
-    Pagination.Start();
+  Clear: function () {
+    document.getElementById('pagination').innerHTML = '';
+    console.log(document.getElementById('pagination'));
+  },
+
+  Init: function (size, context, resultQuery) {
+    console.log('sss');
+    Pagination.Clear();
+    Pagination.context = context;
+    Pagination.size = size;
+    // Pagination.page =1;
+    Pagination.resultQuery = resultQuery;
+    setTimeout(() => {
+      Pagination.Create(document.getElementById('pagination'));
+      Pagination.Start();
+    }, 500);
   },
 };

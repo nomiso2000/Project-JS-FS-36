@@ -12,9 +12,10 @@ export default {
       throw new Error(error);
     }
   },
-  async getMovieByQuery(query) {
+
+  async getMovieByQuery() {
     try {
-      const response = axios.get(
+      const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${APIhelpers.query}&page=${APIhelpers.page}`,
       );
       return response.data;
@@ -24,10 +25,10 @@ export default {
   },
   async getMovieByID(id) {
     try {
-      const response = axios.get(
-        `https://api.themoviedb.org/3/trending/movie/${id}/day?api_key=${api_key}`,
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`,
       );
-      return response.data;
+      return response;
     } catch (error) {
       throw new Error(error);
     }

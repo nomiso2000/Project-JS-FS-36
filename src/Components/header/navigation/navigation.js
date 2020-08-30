@@ -1,14 +1,18 @@
 import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
-import {Pagination} from '../../../Components/pagination/pagination.js'
+import { refs } from './../../../refs';
+import { starterMainPage, createMarkup } from '../../mainPage/mainPage';
+import { saveToLocalStorage } from '../../innerPages/ineer_page';
+import { APIhelpers } from '../../../helpers';
+import { movieListItem } from '../../movieList/movieListItem/movieListItem';
+import { Pagination } from '../../pagination/pagination.js';
 
-let totalResults
 export const navigationModule = array => {
   const itemMarkup = item => {
     return `
     <li data-link=${item} class="navigationListItem  ${
       item === 'Home' ? 'active' : ''
-    }" >
+    } ${item === 'Home' ? 'js-home' : 'js-library'}" >
     <span>${item.toUpperCase()}</span>
     </li>
     `;
@@ -27,41 +31,54 @@ export const navigationModule = array => {
     activeElement.classList.remove('active');
     target.classList.add('active');
   };
- 
+
   const returnMarkup = async link => {
-    const container = document.querySelector('.container');
     const data = link.toLowerCase();
     switch (data) {
       case 'home':
-        const result = await API.getMovies();
-        console.dir(result.results);
-        console.log(result.total_results);
-        totalResults = result.total_results;
-        // console.log(totalResults)
-        // pagination.createArrowLeft();
-        // console.log(pagination.createCurrentPages())
-        // pagination.activePage()
-        // pagination.createArrowRight();
-        // pagination.createDots()
-        Pagination.Init()
-        const markup = movieList(result.results);
-        container.innerHTML = markup;
-                break;
+        starterMainPage();
+        break;
       case 'library':
-        container.innerHTML = '';
+        // refs.container.innerHTML = '';
+        // const watchingArray = JSON.parse(localStorage.getItem('watched'));
+        // console.log(watchingArray);
+        // const newPromises = watchingArray.reduce((acc, id) => {
+        //   acc += API.getMovieByID(id);
+        //   return acc;
+        // }, '');
+        // .then(resolve => {
+        //   console.log(resolve);
+        //   return resolve.data;
+        // });
+
+        // Promise.all([newPromises])
+        //   .then(arr => {
+        //     console.log(arr);
+        //     return arr;
+        //   })
+        //   .then(data => console.log(data));
+        // .then(result => console.log(result));
+        const watchingArray = JSON.parse(localStorage.getItem('watched'));
+        createMarkup(watchingArray);
+
+        const sizeOfPagination = Math.ceil(watchingArray.length / 100);
+
+        Pagination.Init(sizeOfPagination, 'library');
         break;
 
       default:
         return '';
         break;
-
     }
   };
   const getLink = e => {
     if (e.target.closest('[data-link]')) {
       const element = e.target.closest('[data-link]');
       setActiveLink(element);
+      console.log(element);
       returnMarkup(e.target.closest('[data-link]').dataset.link);
+
+      // Pagination.Init()
     } else return;
   };
 
@@ -70,9 +87,6 @@ export const navigationModule = array => {
     list.addEventListener('click', getLink);
   };
 
-  const parent = document.querySelector('.navigation');
-  parent.innerHTML = listMarkup();
+  refs.navigation.innerHTML = listMarkup();
   addListeners();
 };
-
-export  {totalResults}

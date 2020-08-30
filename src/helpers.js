@@ -1,7 +1,9 @@
 export const APIhelpers = {
-  baseURL: 'https://image.tmdb.org',
+  baseURL: 'https://api.themoviedb.org',
+  urlForIMG: 'https://image.tmdb.org',
   imgParams: '/t/p/w500/',
-  page: 3,
+  page: 1,
+  api_key: '249034089965cfc778893cbdb0f537e5',
   query: '',
 };
 
