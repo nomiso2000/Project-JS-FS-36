@@ -98,23 +98,155 @@ img {
   background-size: contain;
 }
 
+ /* one film  */
+
+ .single-page {
+  width: 320px;
+  margin: 0 auto;
+  font-family: Roboto;
+}
+
+.poster-wrapper {
+  width: 320px;
+  padding: 20px;
+
+}
+
+.description-wrapper {
+  padding:10px 20px;
+}
+
+ .vote-wrapper {
+  width: 280px;
+  margin-bottom: 10px;
+}
+ 
+.popularity-wrapper {
+  margin-bottom: 10px;
+}
+
+.original-film-wrapper{
+  margin-bottom: 10px;
+}
+ 
+
+ .film-genre-wrapper{
+margin-bottom: 20px;
+ }
+
+.film-title {
+  font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 23px;
+text-transform: uppercase;
+margin-bottom: 20px;
+
+}
+
+.titles {
+  color: #8C8C8C;
+  font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+}
+
+
+.votes-numbers {
+  font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+}
+
+.popularity-score {
+  font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+
+}
+
+.original-film-name {
+  font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+text-transform: uppercase;
+}
+
+.genre-list {
+  font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+margin-bottom: 10px;
+}
+
+.film-description {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+
+ .button-wrapper {
+margin-bottom: 40px;
+} 
+
+.button-icon {
+  width: 136px;
+  height: 44px;
+  border-radius: 5px;
+  font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+text-align: center; 
+text-transform: uppercase;
+border: 1px solid #000000;
+box-sizing: border-box;
+background-color: #fff;
+}
+
+.button-icon:hover {
+  color: #f7f7f7;
+  background-color: #FF6B01;
+
+}
+
+
 /* FOOTER */
 
 .footer {
   display: block;
-  height: 77px;
   text-align: center;
   padding: 30px 0 0;
   background-color: #f7f7f7;
   color: #545454;
+  height: 100px;
+}
+
+.footer-container {
+  text-align: center;
+  padding: 0 40px;
+
 }
 
 .footer-text {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 14px;
+line-height: 16px;
   color: #545454;
 }
 
@@ -160,3 +292,4 @@ img {
     width: 324px;
   }
 }
+
