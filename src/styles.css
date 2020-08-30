@@ -1,21 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 * {
+<<<<<<< HEAD
   margin: 0;
   padding: 0;
 }
 
 /* * {
+=======
+>>>>>>> dev
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: inherit;
 } */
-
 html {
   box-sizing: border-box;
 }
@@ -46,12 +48,20 @@ img {
   flex-direction: column;
   height: 230px;
   position: relative;
+<<<<<<< HEAD
+=======
+  /* background-image: url(./img/img_header/header_bckg.jpg); */
+>>>>>>> dev
   background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.56),
       rgba(0, 0, 0, 0.56)
     ),
+<<<<<<< HEAD
     url(../src/img/img_header/header_bckg.jpg);
+=======
+    url(./img/img_header/header_bckg.jpg);
+>>>>>>> dev
 
   background-repeat: no-repeat;
   max-width: 100%;
@@ -311,7 +321,7 @@ h2 {
   font-size: 20px;
   line-height: 23px;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin: 0px 0px 20px 0px;
 }
 
 .titles {
@@ -322,16 +332,29 @@ h2 {
   line-height: 16px;
 }
 
-.votes-numbers {
+.votes-count {
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+  margin-left: 8px;
+}
+
+.votes-average {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  background: #ff6b01;
+  border-radius: 5px;
+  margin-left: 25px;
+  padding: 2px 9px;
+  color: white;
 }
 
 .popularity-score {
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+  padding-left: 37px;
 }
 
 .original-film-name {
@@ -339,6 +362,7 @@ h2 {
   font-size: 12px;
   line-height: 16px;
   text-transform: uppercase;
+  padding-left: 25px;
 }
 
 .genre-list {
@@ -346,6 +370,7 @@ h2 {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  padding-left: 52px;
 }
 
 h3 {
@@ -367,10 +392,13 @@ h3 {
 
 .button-wrapper {
   margin-bottom: 40px;
+  max-width: 270px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .button-icon {
-  width: 136px;
+  width: 130px;
   height: 44px;
   border-radius: 5px;
   font-family: Roboto;
@@ -383,6 +411,9 @@ h3 {
   border: 1px solid #000000;
   box-sizing: border-box;
   background-color: #fff;
+}
+.video-icon {
+  margin-right: 5px;
 }
 
 .button-icon:hover {
@@ -400,7 +431,6 @@ h3 {
   background-color: rgb(255, 107, 8, 1);
   border: 1px solid #ff6b01;
 }
-
 /* FOOTER */
 
 .footer {
@@ -447,12 +477,17 @@ h3 {
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .header {
+<<<<<<< HEAD
+=======
+    /* background-image: url(./img/img_header/header_bckg1024.jpg); */
+>>>>>>> dev
     background-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
       url(./img/img_header/header_bckg1024.jpg);
+<<<<<<< HEAD
   }
 
   .new_image {
@@ -462,6 +497,8 @@ h3 {
         rgba(0, 0, 0, 0.56)
       ),
       url(./img/img_header/header_bckg_library768.jpg);
+=======
+>>>>>>> dev
   }
   .logo {
     width: 175px;
@@ -491,12 +528,37 @@ h3 {
   h2 {
     padding: 4px 0px 0px 0px;
     margin: 0;
+    width: 280px;
   }
   .genres {
     margin: 0;
     padding: 3px 0px 0px 0px;
   }
   li {
+    margin: 0;
+  }
+  .single-page {
+    min-width: 760px;
+    margin: 0;
+    padding: 0;
+  }
+  .poster {
+    margin: 0px 0px 0px 40px;
+    float: left;
+    width: 350px;
+  }
+
+  .description-wrapper {
+    margin: 0;
+    float: left;
+    width: 350px;
+    margin: 0px 0px 0px 30px;
+    padding-top: 0;
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: space-between;
     margin: 0;
   }
 }
@@ -518,6 +580,7 @@ h3 {
         rgba(0, 0, 0, 0.56)
       ),
       url(./img/img_header/header_bckg1024.jpg);
+<<<<<<< HEAD
   }
 
   .new_image {
@@ -527,6 +590,8 @@ h3 {
         rgba(0, 0, 0, 0.56)
       ),
       url(./img/img_header/header_bckg_library1024.jpg);
+=======
+>>>>>>> dev
   }
 
   .header__container {
@@ -554,5 +619,21 @@ h3 {
   }
   li {
     margin: 0;
+  }
+  .single-page {
+    min-width: 1000px;
+  }
+  .poster {
+    margin: 0px 0px 0px 70px;
+    float: left;
+    width: 500px;
+  }
+
+  .description-wrapper {
+    margin: 0;
+    float: left;
+    width: 500px;
+    margin: 0px 0px 0px 80px;
+    padding-top: 0;
   }
 }
