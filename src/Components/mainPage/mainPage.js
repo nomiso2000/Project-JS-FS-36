@@ -12,7 +12,6 @@ import { Pagination } from '../pagination/pagination.js';
 ///////////////////////////////////
 
 export async function getId(e) {
-  Pagination.Clear();
   if (e.target.closest('[data-id]')) {
     const filmId = e.target.closest('[data-id]').dataset.id;
 
@@ -49,7 +48,7 @@ starterMainPage();
 
 export function createMarkup(data) {
   refs.container.innerHTML = '';
- 
+
   const markup = movieList(data);
   refs.container.insertAdjacentHTML(
     'beforeend',

@@ -7,11 +7,13 @@ import { starterMainPage } from '../mainPage/mainPage.js';
 import { setQuery } from '../header/search/search_api.js';
 import getMovieByQuery from '../../api_services';
 import { createMarkup, getId } from '../mainPage/mainPage.js';
+import { refs } from '../../refs.js';
+import { movieList } from '../movieList/movieList.js';
 
 export const Pagination = {
   code: '',
-  size: 0, // pages size+
-  page: 1, // selected page
+  size: 0, // pages size
+
   step: 2, // pages before and after current
   context: '',
   resultsQuery: [],
@@ -41,22 +43,22 @@ export const Pagination = {
     Pagination.code += '<a>1</a><i>...</i>';
   },
 
-  // change page
-  Click: function () {
-    
-    Pagination.page = +this.innerHTML;
-    Pagination.Start();
-
+  APIandMarkup: function () {
     APIhelpers.page = Pagination.page;
     // APIhelpers.page = Number(event.target.textContent);
     if (Pagination.context === 'mainPage') {
-     
-      starterMainPage();
+      const result = API.getMovies().then(result => {
+        const markup = movieList(result.results);
+
+        refs.container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
+        const movie_list = document.querySelector('.movies_list');
+        movie_list.addEventListener('click', getId);
+      });
     }
 
     if (Pagination.context === 'search_api') {
-      APIhelpers.page = Number(event.target.textContent)
-      
+      APIhelpers.page = Number(event.target.textContent);
+
       APIhelpers.query = Pagination.resultQuery;
       async function fun() {
         const data = await getMovieByQuery.getMovieByQuery();
@@ -67,8 +69,13 @@ export const Pagination = {
       }
       fun();
     }
+  },
 
-    
+  // change page
+  Click: function () {
+    Pagination.page = +this.innerHTML;
+    Pagination.Start();
+    this.APIandMarkup();
   },
 
   // previous page
@@ -78,25 +85,7 @@ export const Pagination = {
       Pagination.page = 1;
     }
     Pagination.Start();
-    APIhelpers.page = Pagination.page;
-    // APIhelpers.page = Number(event.target.textContent);
-    if (Pagination.context === 'mainPage') {
-      starterMainPage();
-    }
-
-    if (Pagination.context === 'search_api') {
-      APIhelpers.query = Pagination.resultQuery;
-      async function fun() {
-        const data = await getMovieByQuery.getMovieByQuery();
-
-        createMarkup(data.results);
-        // const movie_list = document.querySelector('.movies_list');
-        // movie_list.addEventListener('click', getId);
-      }
-      fun();
-    }
-
-    // Pagination.context ='';
+    this.APIandMarkup();
   },
 
   // next page
@@ -107,26 +96,7 @@ export const Pagination = {
       Pagination.page = Pagination.size;
     }
     Pagination.Start();
-    APIhelpers.page = Pagination.page;
-    // APIhelpers.page = Number(event.target.textContent);
-    if (Pagination.context === 'mainPage') {
-      starterMainPage();
-    }
-
-    if (Pagination.context === 'search_api') {
-      APIhelpers.query = Pagination.resultQuery;
-      
-      async function fun() {
-        const data = await getMovieByQuery.getMovieByQuery();
-
-        createMarkup(data.results);
-        // const movie_list = document.querySelector('.movies_list');
-        // movie_list.addEventListener('click', getId);
-      }
-      fun();
-    }
-
-    // Pagination.context ='';
+    this.APIandMarkup();
   },
 
   // binding pages
@@ -195,17 +165,15 @@ export const Pagination = {
 
   Clear: function () {
     document.getElementById('pagination').innerHTML = '';
-     },
+  },
 
   Init: function (size, context, resultQuery) {
-        debugger
     this.context = context;
     this.size = size;
-    // Pagination.page =1;
+    Pagination.page = 1;
     this.resultQuery = resultQuery;
-    
+
     this.Create(document.getElementById('pagination'));
     this.Start();
-    
   },
 };
