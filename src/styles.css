@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 /* * {
   margin: 0;
   padding: 0;
@@ -41,7 +46,13 @@ img {
   flex-direction: column;
   height: 230px;
   position: relative;
-  background-image: url(./img/img_header/header_bckg.jpg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../src/img/img_header/header_bckg.jpg);
+
   background-repeat: no-repeat;
   max-width: 100%;
   min-width: 320px;
@@ -414,7 +425,12 @@ h3 {
 
 @media (min-width: 320px) and (max-width: 767px) {
   .header {
-    background-image: url(./img/img_header/header_bckg768.jpg);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg768.jpg);
   }
 }
 
@@ -422,7 +438,12 @@ h3 {
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .header {
-    background-image: url(./img/img_header/header_bckg1024.jpg);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg1024.jpg);
   }
   .logo {
     width: 175px;
@@ -473,7 +494,12 @@ h3 {
     visibility: visible;
   }
   .header {
-    background-image: url(./img/img_header/header_bckg1024.jpg);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg1024.jpg);
   }
 
   .header__container {
