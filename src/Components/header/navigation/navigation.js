@@ -11,6 +11,7 @@ import {
   hideBtns,
   showBtns,
 } from '../lib_buttons/hidden';
+import { displayWatched } from '../lib_buttons/process';
 export const navigationModule = array => {
   const itemMarkup = item => {
     return `
@@ -46,10 +47,11 @@ export const navigationModule = array => {
 
         break;
       case 'library':
-        const watchingArray = JSON.parse(localStorage.getItem('watched'));
-        createMarkup(watchingArray);
-        const movie_list = document.querySelector('.movies_list');
-        movie_list.addEventListener('click', getId);
+        // const watchingArray = JSON.parse(localStorage.getItem('watched'));
+        // createMarkup(watchingArray);
+        // const movie_list = document.querySelector('.movies_list');
+        // movie_list.addEventListener('click', getId);
+        displayWatched();
         hideSearch();
         showBtns();
 

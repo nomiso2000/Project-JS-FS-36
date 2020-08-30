@@ -1,13 +1,15 @@
 import { watchedListItem } from '../../templates/watched-page';
 import { createMarkup, getId } from '../../mainPage/mainPage';
 
-const displayWatched = () => {
+export const displayWatched = () => {
   // const container = document.createElement('ul');
   // container.classList.add('w_films');
   // const mainContainer = document.querySelector('.container');
   // mainContainer.innerHTML = '';
   // mainContainer.appendChild(container);
-
+  watchedBtn.classList.add('active_btn');
+  queueBtn.classList.remove('active_btn');
+  console.log(watchedBtn);
   const filmsWatched = [...JSON.parse(localStorage.getItem('watched'))];
   createMarkup(filmsWatched);
   const movie_list = document.querySelector('.movies_list');
@@ -24,6 +26,8 @@ const displayQueue = () => {
   // const mainContainer = document.querySelector('.container');
   // mainContainer.innerHTML = '';
   // mainContainer.appendChild(container);
+  watchedBtn.classList.remove('active_btn');
+  queueBtn.classList.add('active_btn');
 
   const filmsQueue = [...JSON.parse(localStorage.getItem('queue'))];
   createMarkup(filmsQueue);

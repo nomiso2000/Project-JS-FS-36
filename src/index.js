@@ -9,7 +9,7 @@ import { pagination } from './Components/pagination/pagination.js';
 import './Components/mainPage/mainPage';
 
 import './Components/header/lib_buttons/process';
-
+import './Components/header/logo/logo';
 const array = ['Home', 'Library'];
 
 navigationModule(array);
