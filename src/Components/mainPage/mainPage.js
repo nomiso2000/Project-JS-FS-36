@@ -49,7 +49,7 @@ starterMainPage();
 
 export function createMarkup(data) {
   refs.container.innerHTML = '';
-  console.log(data);
+ 
   const markup = movieList(data);
   refs.container.insertAdjacentHTML(
     'beforeend',

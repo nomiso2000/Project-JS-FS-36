@@ -28,8 +28,7 @@ export async function setQuery() {
   const query = event.currentTarget.input.value;
   APIhelpers.query = query;
   const data = await getMovieByQuery.getMovieByQuery();
-  console.log(data.results);
-  createMarkup(data.results);
+   createMarkup(data.results);
   let totalResults = data.total_pages;
   const context = 'search_api';
 

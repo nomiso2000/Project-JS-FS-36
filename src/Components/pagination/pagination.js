@@ -10,7 +10,7 @@ import { createMarkup, getId } from '../mainPage/mainPage.js';
 
 export const Pagination = {
   code: '',
-  size: 0, // pages size
+  size: 0, // pages size+
   page: 1, // selected page
   step: 2, // pages before and after current
   context: '',
@@ -19,7 +19,7 @@ export const Pagination = {
   // add pages by number (from [s] to [f])
   Add: function (s, f) {
     for (var i = s; i < f; i++) {
-      Pagination.code += '<a>' + i + '</a>';
+      this.code += '<a>' + i + '</a>';
     }
   },
 
@@ -43,18 +43,20 @@ export const Pagination = {
 
   // change page
   Click: function () {
-    //  Pagination.page=1
-
+    
     Pagination.page = +this.innerHTML;
     Pagination.Start();
 
     APIhelpers.page = Pagination.page;
     // APIhelpers.page = Number(event.target.textContent);
     if (Pagination.context === 'mainPage') {
+     
       starterMainPage();
     }
 
     if (Pagination.context === 'search_api') {
+      APIhelpers.page = Number(event.target.textContent)
+      
       APIhelpers.query = Pagination.resultQuery;
       async function fun() {
         const data = await getMovieByQuery.getMovieByQuery();
@@ -66,7 +68,7 @@ export const Pagination = {
       fun();
     }
 
-    Pagination.context = '';
+    
   },
 
   // previous page
@@ -88,8 +90,8 @@ export const Pagination = {
         const data = await getMovieByQuery.getMovieByQuery();
 
         createMarkup(data.results);
-        const movie_list = document.querySelector('.movies_list');
-        movie_list.addEventListener('click', getId);
+        // const movie_list = document.querySelector('.movies_list');
+        // movie_list.addEventListener('click', getId);
       }
       fun();
     }
@@ -113,13 +115,13 @@ export const Pagination = {
 
     if (Pagination.context === 'search_api') {
       APIhelpers.query = Pagination.resultQuery;
-      console.log(Pagination.resultQuery);
+      
       async function fun() {
         const data = await getMovieByQuery.getMovieByQuery();
 
         createMarkup(data.results);
-        const movie_list = document.querySelector('.movies_list');
-        movie_list.addEventListener('click', getId);
+        // const movie_list = document.querySelector('.movies_list');
+        // movie_list.addEventListener('click', getId);
       }
       fun();
     }
@@ -193,19 +195,17 @@ export const Pagination = {
 
   Clear: function () {
     document.getElementById('pagination').innerHTML = '';
-    console.log(document.getElementById('pagination'));
-  },
+     },
 
   Init: function (size, context, resultQuery) {
-    console.log('sss');
-    Pagination.Clear();
-    Pagination.context = context;
-    Pagination.size = size;
+        debugger
+    this.context = context;
+    this.size = size;
     // Pagination.page =1;
-    Pagination.resultQuery = resultQuery;
-    setTimeout(() => {
-      Pagination.Create(document.getElementById('pagination'));
-      Pagination.Start();
-    }, 500);
+    this.resultQuery = resultQuery;
+    
+    this.Create(document.getElementById('pagination'));
+    this.Start();
+    
   },
 };
