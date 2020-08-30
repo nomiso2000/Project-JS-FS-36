@@ -290,7 +290,7 @@ h2 {
   font-size: 20px;
   line-height: 23px;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin: 0px 0px 20px 0px;
 }
 
 .titles {
@@ -301,16 +301,29 @@ h2 {
   line-height: 16px;
 }
 
-.votes-numbers {
+.votes-count {
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+  margin-left: 8px;
+}
+
+.votes-average {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  background: #FF6B01;
+  border-radius: 5px;
+  margin-left: 25px;
+  padding: 2px 9px;
+  color: white;
 }
 
 .popularity-score {
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+  padding-left: 37px;
 }
 
 .original-film-name {
@@ -318,6 +331,7 @@ h2 {
   font-size: 12px;
   line-height: 16px;
   text-transform: uppercase;
+  padding-left: 25px;
 }
 
 .genre-list {
@@ -325,6 +339,7 @@ h2 {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  padding-left: 52px;
 }
 
 h3 {
@@ -349,7 +364,7 @@ h3 {
 }
 
 .button-icon {
-  width: 136px;
+  width: 130px;
   height: 44px;
   border-radius: 5px;
   font-family: Roboto;
@@ -364,9 +379,14 @@ h3 {
   background-color: #fff;
 }
 
+.video-icon {
+  margin-right: 5px;
+}
+
 .button-icon:hover {
   color: #f7f7f7;
   background-color: #ff6b01;
+  border: transparent;
 }
 
 /* FOOTER */
@@ -430,6 +450,7 @@ h3 {
     flex-wrap: wrap;
   }
   h2 {
+    width: 280px;
     padding: 4px 0px 0px 0px;
     margin: 0;
   }
@@ -440,7 +461,33 @@ h3 {
   li {
     margin: 0;
   }
+  .single-page {
+    min-width: 760px;
+    margin: 0;
+    padding: 0;
+  }
+  .poster {
+    margin: 0px 0px 0px 40px;
+    float: left;
+    width: 350px;
+    }
+
+    .description-wrapper {
+      margin: 0;
+      float: left;
+      width: 350px;
+      margin: 0px 0px 0px 30px;
+      padding-top: 0;
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+    }
 }
+
+
 
 /* MEDIA DESKTOP */
 @media (min-width: 1024px) {
@@ -474,4 +521,21 @@ h3 {
   li {
     margin: 0;
   }
+
+  .single-page {
+    min-width: 1000px;
+  }
+  .poster {
+    margin: 0px 0px 0px 70px;
+    float: left;
+    width: 500px;
+    }
+
+    .description-wrapper {
+      margin: 0;
+      float: left;
+      width: 500px;
+      margin: 0px 0px 0px 80px;
+      padding-top: 0;
+    }
 }

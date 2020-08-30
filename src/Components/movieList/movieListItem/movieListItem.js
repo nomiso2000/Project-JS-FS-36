@@ -11,6 +11,9 @@ export const movieListItem = ({
   if (release_date === undefined) {
     release_date = 'Unreleased yet';
   }
+  if(poster_path === undefined) {
+    return `<img scr="https://skshi-astana.kz/sites/default/files/default_images/no-image.png" alt="">`
+  }
   return `
     <li class="movieListItem" data-id=${id}>
     <div class="image">
