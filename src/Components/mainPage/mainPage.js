@@ -31,10 +31,38 @@ export async function getId(e) {
 
     const result = await API.getMovieByID(filmId);
     const newMurk = singlePage(result.data);
-    console.log(result);
+
     refs.container.innerHTML = newMurk;
+    const watchedBtn = document.querySelector('[data-action="watched-films"]');
+    const queueBtn = document.querySelector('[data-action="queue-films"]');
+    let currentArray = [];
+    let jsonSet = localStorage.getItem('watched');
+    if (jsonSet) {
+      currentArray = JSON.parse(jsonSet);
+    }
+    if (currentArray.find(film => film.id === Number.parseInt(filmId))) {
+      watchedBtn.classList.add('item-exist');
+      watchedBtn.textContent = `Remove to watched`;
+    } else {
+      watchedBtn.classList.remove('item-exist');
+      watchedBtn.textContent = `Add from watched`;
+    }
+    currentArray = [];
+    jsonSet = localStorage.getItem('queue');
+    if (jsonSet) {
+      currentArray = JSON.parse(jsonSet);
+    }
+    if (currentArray.find(film => film.id === Number.parseInt(filmId))) {
+      queueBtn.classList.add('item-exist');
+      queueBtn.textContent = `Remove to queue`;
+    } else {
+      queueBtn.classList.remove('item-exist');
+      queueBtn.textContent = `Add from queue`;
+    }
     const button_wrapper = document.querySelector('.button-wrapper');
-    button_wrapper.addEventListener('click', (event) => saveToLocalStorage(event, result.data));
+    button_wrapper.addEventListener('click', event =>
+      saveToLocalStorage(event, result.data),
+    );
   } else return;
 }
 
@@ -58,3 +86,4 @@ export function createMarkup(data) {
     `<ul class="movie_list">${markup}</ul>`,
   );
 }
+
