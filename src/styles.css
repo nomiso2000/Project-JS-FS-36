@@ -177,9 +177,9 @@ img {
 /* .navigationListItem {
   cursor: pointer;
 } */
-/* .navigationListItem.active {
+.navigationListItem.active {
   border-bottom: 3px solid #ff6b01;
-} */
+}
 
 /* MAIN */
 .container {
