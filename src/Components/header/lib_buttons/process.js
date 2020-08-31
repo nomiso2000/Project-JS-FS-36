@@ -9,7 +9,8 @@ export const displayWatched = () => {
   // mainContainer.appendChild(container);
   watchedBtn.classList.add('active_btn');
   queueBtn.classList.remove('active_btn');
-  const filmsWatched = [...JSON.parse(localStorage.getItem('watched'))];
+  const filmsWatched = JSON.parse(localStorage.getItem('watched')) || [];
+
   createMarkup(filmsWatched);
   const movie_list = document.querySelector('.movies_list');
   movie_list.addEventListener('click', getId);
@@ -28,7 +29,7 @@ const displayQueue = () => {
   watchedBtn.classList.remove('active_btn');
   queueBtn.classList.add('active_btn');
 
-  const filmsQueue = [...JSON.parse(localStorage.getItem('queue'))];
+  const filmsQueue = JSON.parse(localStorage.getItem('queue')) || [];
   createMarkup(filmsQueue);
   const movie_list = document.querySelector('.movies_list');
   movie_list.addEventListener('click', getId);

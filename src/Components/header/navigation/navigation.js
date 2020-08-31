@@ -12,7 +12,11 @@ import {
   showBtns,
 } from '../lib_buttons/hidden';
 import { displayWatched } from '../lib_buttons/process';
-import { addHeaderClass, removeHeaderClass } from '../header';
+import {
+  addHeaderClass,
+  removeHeaderClass,
+  removeSingleHeaderClass,
+} from '../header';
 import { Pagination } from '../../pagination/pagination';
 
 export const navigationModule = array => {
@@ -45,10 +49,12 @@ export const navigationModule = array => {
     switch (data) {
       case 'home':
         removeHeaderClass();
+        removeSingleHeaderClass();
+
         starterMainPage();
         showSearch();
         hideBtns();
-        APIhelpers.page = 1;
+        // APIhelpers.page = 1;
 
         break;
       case 'library':
@@ -57,7 +63,7 @@ export const navigationModule = array => {
         hideSearch();
         showBtns();
 
-        const watchingArray = JSON.parse(localStorage.getItem('watched'));
+        const watchingArray = JSON.parse(localStorage.getItem('watched')) || [];
 
         const sizeOfPagination = Math.ceil(watchingArray.length / 100);
 

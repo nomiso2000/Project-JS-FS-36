@@ -9,8 +9,10 @@ import { navigationModule } from '../header/navigation/navigation';
 import { saveToLocalStorage } from '../innerPages/ineer_page';
 import { Pagination } from '../pagination/pagination';
 import { hideBtns } from '../header/lib_buttons/hidden';
+import { addSingleHeaderClass } from '../header/header';
 
 export async function getId(e) {
+  addSingleHeaderClass();
   if (e.target.closest('[data-id]')) {
     const filmId = e.target.closest('[data-id]').dataset.id;
 
@@ -63,6 +65,7 @@ export const starterMainPage = async () => {
   refs.container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
   const movie_list = document.querySelector('.movies_list');
   movie_list.addEventListener('click', getId);
+  refs.preloader.classList.add('loaded');
 };
 
 starterMainPage();

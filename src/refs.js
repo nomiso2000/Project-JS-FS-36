@@ -4,4 +4,5 @@ export const refs = {
   header: document.querySelector('.header'),
   watchedBtn: document.querySelector('#watched'),
   queueBtn: document.querySelector('#queue'),
+  preloader: document.querySelector('.preloader'),
 };

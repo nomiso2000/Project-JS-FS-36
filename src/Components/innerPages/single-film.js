@@ -13,6 +13,9 @@ export const singlePage = ({
     const result = genres.map(genre => genre.name);
     return result;
   }
+  if (poster_path === null) {
+    poster_path = '/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg';
+  }
   return `<section class="single-page" data-id="${id}">
     <div class="poster-wrapper">
       <img class="poster img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="">
