@@ -1,5 +1,8 @@
 import './styles.css';
 import './Components/pagination/pagination.css';
+import './Components/preloader/preloader.js';
+import './Components/preloader/preloader.css';
+
 import { navigationModule } from './Components/header/navigation/navigation';
 import { api_services } from './api_services';
 import searchAPI from '../src/Components/header/search/search_api';

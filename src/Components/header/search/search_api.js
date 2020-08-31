@@ -5,6 +5,7 @@ import { data } from 'autoprefixer';
 import { movieList } from '../../movieList/movieList';
 import { Pagination } from '../../pagination/pagination';
 import axios from 'axios';
+import { refs } from '../../../refs';
 const generes = {
   info: [],
 };
@@ -38,7 +39,6 @@ export async function setQuery() {
     film.genres = getGenresList(film.genre_ids);
     return film;
   });
-
   createMarkup(result);
 
   let totalResults = data.data.total_pages;
