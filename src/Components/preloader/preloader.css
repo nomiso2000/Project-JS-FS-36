@@ -48,7 +48,7 @@ a:active,
 a:hover {
   outline: 0;
 }
-h1 {
+/* h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
@@ -71,7 +71,7 @@ h5 {
 h6 {
   font-size: 0.67em;
   margin: 2.33em 0;
-}
+} */
 abbr[title] {
   border-bottom: 1px dotted;
 }

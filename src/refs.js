@@ -5,4 +5,5 @@ export const refs = {
   watchedBtn: document.querySelector('#watched'),
   queueBtn: document.querySelector('#queue'),
   preloader: document.querySelector('.preloader'),
+  pagintatonClick: document.querySelector('#pagination'),
 };

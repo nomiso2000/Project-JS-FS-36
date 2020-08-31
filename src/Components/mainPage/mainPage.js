@@ -58,6 +58,7 @@ export const starterMainPage = async () => {
   let totalResults = Math.ceil(result.data.total_results / 20);
   const context = 'mainPage';
   Pagination.Init(totalResults, context);
+
   const markupResult = await API.getMovies();
   const markup = movieList(markupResult);
   hideBtns();
@@ -65,7 +66,6 @@ export const starterMainPage = async () => {
   refs.container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
   const movie_list = document.querySelector('.movies_list');
   movie_list.addEventListener('click', getId);
-  refs.preloader.classList.add('loaded');
 };
 
 starterMainPage();

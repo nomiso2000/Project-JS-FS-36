@@ -14,6 +14,9 @@ export const getGeneres = async () => {
 };
 
 export const getGenresList = array => {
+  if (array === undefined) {
+    array = [];
+  }
   const mapArray = array.map(item =>
     generes.info.find(genre => genre.id === item),
   );

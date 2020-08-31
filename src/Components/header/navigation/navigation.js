@@ -54,7 +54,8 @@ export const navigationModule = array => {
         starterMainPage();
         showSearch();
         hideBtns();
-        // APIhelpers.page = 1;
+        APIhelpers.page = 1;
+        refs.pagintatonClick.classList.remove('hideSearch');
 
         break;
       case 'library':
@@ -62,6 +63,8 @@ export const navigationModule = array => {
         displayWatched();
         hideSearch();
         showBtns();
+
+        refs.pagintatonClick.classList.add('hideSearch');
 
         const watchingArray = JSON.parse(localStorage.getItem('watched')) || [];
 
