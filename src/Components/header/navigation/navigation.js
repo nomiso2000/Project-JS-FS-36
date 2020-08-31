@@ -1,11 +1,19 @@
 import API from '../../../api_services';
 import { movieList } from '../../movieList/movieList';
 import { refs } from './../../../refs';
-import { starterMainPage, createMarkup } from '../../mainPage/mainPage';
+import { starterMainPage, createMarkup, getId } from '../../mainPage/mainPage';
 import { saveToLocalStorage } from '../../innerPages/ineer_page';
 import { APIhelpers } from '../../../helpers';
 import { movieListItem } from '../../movieList/movieListItem/movieListItem';
-import { Pagination } from '../../pagination/pagination.js';
+import {
+  hideSearch,
+  showSearch,
+  hideBtns,
+  showBtns,
+} from '../lib_buttons/hidden';
+import { displayWatched } from '../lib_buttons/process';
+import { addHeaderClass, removeHeaderClass } from '../header';
+import { Pagination } from '../../pagination/pagination';
 
 export const navigationModule = array => {
   const itemMarkup = item => {
@@ -36,34 +44,25 @@ export const navigationModule = array => {
     const data = link.toLowerCase();
     switch (data) {
       case 'home':
+        removeHeaderClass();
         starterMainPage();
+        showSearch();
+        hideBtns();
+        APIhelpers.page = 1;
+
         break;
       case 'library':
-        // refs.container.innerHTML = '';
-        // const watchingArray = JSON.parse(localStorage.getItem('watched'));
-        // console.log(watchingArray);
-        // const newPromises = watchingArray.reduce((acc, id) => {
-        //   acc += API.getMovieByID(id);
-        //   return acc;
-        // }, '');
-        // .then(resolve => {
-        //   console.log(resolve);
-        //   return resolve.data;
-        // });
+        addHeaderClass();
+        displayWatched();
+        hideSearch();
+        showBtns();
 
-        // Promise.all([newPromises])
-        //   .then(arr => {
-        //     console.log(arr);
-        //     return arr;
-        //   })
-        //   .then(data => console.log(data));
-        // .then(result => console.log(result));
         const watchingArray = JSON.parse(localStorage.getItem('watched'));
-        createMarkup(watchingArray);
 
         const sizeOfPagination = Math.ceil(watchingArray.length / 100);
 
         Pagination.Init(sizeOfPagination, 'library');
+
         break;
 
       default:
@@ -75,10 +74,7 @@ export const navigationModule = array => {
     if (e.target.closest('[data-link]')) {
       const element = e.target.closest('[data-link]');
       setActiveLink(element);
-      console.log(element);
       returnMarkup(e.target.closest('[data-link]').dataset.link);
-
-      // Pagination.Init()
     } else return;
   };
 

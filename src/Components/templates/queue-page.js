@@ -1,4 +1,4 @@
-const queueListItem = ({ id, backdrop_path, title, vote_average }) => {
+export const queueListItem = ({ id, backdrop_path, title, vote_average }) => {
   return ` <li data-id="${id}">
     <div class="poster-wrapper">
       <img src="${backdrop_path}" alt="movie poster image">

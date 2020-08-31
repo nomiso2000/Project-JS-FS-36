@@ -7,9 +7,8 @@ import { refs } from '../../refs';
 import { singlePage } from '../innerPages/single-film';
 import { navigationModule } from '../header/navigation/navigation';
 import { saveToLocalStorage } from '../innerPages/ineer_page';
-import { Pagination } from '../pagination/pagination.js';
-
-///////////////////////////////////
+import { Pagination } from '../pagination/pagination';
+import { hideBtns } from '../header/lib_buttons/hidden';
 
 export async function getId(e) {
   if (e.target.closest('[data-id]')) {
@@ -19,25 +18,48 @@ export async function getId(e) {
     const newMurk = singlePage(result.data);
 
     refs.container.innerHTML = newMurk;
-    // const button_icon = document.querySelector('.button-icon');
-    //   button_icon.addEventListener('click', () =>
-    //     console.log(e.target.closest('[data-id]').dataset.id),
-    //   );
-    // } else return;
-    // const watchedBtn = document.querySelector('[data-action="watched-films"]');
-    // watchedBtn.addEventListener('click', console.log(result.data.id));
+    const watchedBtn = document.querySelector('[data-action="watched-films"]');
+    const queueBtn = document.querySelector('[data-action="queue-films"]');
+    let currentArray = [];
+    let jsonSet = localStorage.getItem('watched');
+    if (jsonSet) {
+      currentArray = JSON.parse(jsonSet);
+    }
+    if (currentArray.find(film => film.id === Number.parseInt(filmId))) {
+      watchedBtn.classList.add('item-exist');
+      watchedBtn.textContent = `Remove to watched`;
+    } else {
+      watchedBtn.classList.remove('item-exist');
+      watchedBtn.textContent = `Add from watched`;
+    }
+    currentArray = [];
+    jsonSet = localStorage.getItem('queue');
+    if (jsonSet) {
+      currentArray = JSON.parse(jsonSet);
+    }
+    if (currentArray.find(film => film.id === Number.parseInt(filmId))) {
+      queueBtn.classList.add('item-exist');
+      queueBtn.textContent = `Remove to queue`;
+    } else {
+      queueBtn.classList.remove('item-exist');
+      queueBtn.textContent = `Add from queue`;
+    }
     const button_wrapper = document.querySelector('.button-wrapper');
     button_wrapper.addEventListener('click', event =>
       saveToLocalStorage(event, result.data),
     );
   } else return;
 }
+
 export const starterMainPage = async () => {
-  const result = await API.getMovies();
-  let totalResults = Math.ceil(result.total_results / 20);
+  const result = await API.getMoviesForPlag();
+  console.log(result.data.total_results)
+  let totalResults = Math.ceil(result.data.total_results / 20);
   const context = 'mainPage';
   Pagination.Init(totalResults, context);
-  const markup = movieList(result.results);
+  const markupResult = await API.getMovies();
+  const markup = movieList(markupResult);
+  hideBtns();
 
   refs.container.innerHTML = `<ul class="movies_list">${markup}</ul>`;
   const movie_list = document.querySelector('.movies_list');
@@ -48,12 +70,9 @@ starterMainPage();
 
 export function createMarkup(data) {
   refs.container.innerHTML = '';
-
   const markup = movieList(data);
   refs.container.insertAdjacentHTML(
     'beforeend',
     `<ul class="movies_list">${markup}</ul>`,
   );
 }
-// Pagination.Init()
-// export  {totalResults}

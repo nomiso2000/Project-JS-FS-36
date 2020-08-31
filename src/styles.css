@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: inherit;
 } */
-
 html {
   box-sizing: border-box;
 }
@@ -30,7 +29,7 @@ a {
   text-decoration: none;
 }
 
-img {
+.img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -40,39 +39,93 @@ img {
   display: flex;
   flex-direction: column;
   height: 230px;
-  background-image: url(./img/img_header/header_bckg.jpg);
+  position: relative;
+
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(./img/img_header/header_bckg.jpg);
+
   background-repeat: no-repeat;
   max-width: 100%;
   min-width: 320px;
   background-size: cover;
+  margin-bottom: 20px;
 }
 
 .header__container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
   padding-top: 58px;
   width: 280px;
 }
 
 .logo {
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 175px;
 }
+
+.logo_path {
+  padding-top: 5px;
+}
+.logo-text {
+  color: #ffffff;
+  margin: 0;
+  visibility: hidden;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0;
+  line-height: 35px;
+  font-weight: 500;
+}
+
 .navigationList {
   display: flex;
   width: 145px;
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
+  line-height: 16px;
   font-weight: 500;
   color: #ffffff;
   text-transform: uppercase;
+  margin: 0;
+}
+
+.navigationListItem {
+  position: relative;
+  cursor: pointer;
+}
+.js-home:hover::after {
+  content: '';
+  display: block;
+  background-color: #ff6b08;
+  width: 100%;
+  height: 3px;
+  position: absolute;
+}
+
+.js-library:hover::after {
+  content: '';
+  display: block;
+  background-color: #ff6b08;
+  width: 100%;
+  height: 3px;
+  position: absolute;
 }
 
 .search-form {
   display: flex;
   margin: 0 auto;
-  padding-top: 50px;
+  padding-top: 38px;
+}
+.hideSearch {
+  display: none;
 }
 
 #input {
@@ -102,11 +155,28 @@ img {
   background-size: contain;
 }
 
+/* .navigationListItem {
+  cursor: pointer;
+} */
+.navigationListItem.active {
+  border-bottom: 3px solid #ff6b01;
+}
+
+.header.header-libraty-img {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(./img/img_header/Rectangle1024.png);
+}
+
 /* MAIN */
 .container {
   margin: 0 auto;
   width: 320px;
   /* height: 1140px; */
+  /* height: 3140px; */
 }
 
 .movieListItem {
@@ -125,11 +195,11 @@ img {
   padding: 0;
 }
 
-img {
+.img {
   width: 274px;
   height: 398px;
-  /* left: 20px;
-  top: 250px; */
+  left: 20px;
+  top: 250px;
   border-radius: 5px;
   display: block;
   margin: 0 auto;
@@ -166,14 +236,220 @@ h2 {
   padding-left: 22px;
   color: #ff6b01;
 }
+.footer {
+  display: block;
+  height: 77px;
+
+  padding: 30px 0 0;
+
+  background-color: #f7f7f7;
+  color: #545454;
+}
+
+.footer-text {
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #545454;
+}
+
+.footer-link {
+  color: #545454;
+}
 
 /* MAIN */
+/* one film  */
+
+.single-page {
+  width: 320px;
+  margin: 0 auto;
+  font-family: Roboto;
+}
+
+.poster-wrapper {
+  width: 320px;
+  padding: 20px;
+}
+
+.description-wrapper {
+  padding: 10px 20px;
+}
+
+.vote-wrapper {
+  width: 280px;
+  margin-bottom: 10px;
+}
+
+.popularity-wrapper {
+  margin-bottom: 10px;
+}
+
+.original-film-wrapper {
+  margin-bottom: 10px;
+}
+
+.film-genre-wrapper {
+  margin-bottom: 20px;
+}
+
+.film-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  margin: 0px 0px 20px 0px;
+}
+
+.titles {
+  color: #8c8c8c;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.votes-count {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  margin-left: 8px;
+}
+
+.votes-average {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  background: #ff6b01;
+  border-radius: 5px;
+  margin-left: 25px;
+  padding: 2px 9px;
+  color: white;
+}
+
+.popularity-score {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  padding-left: 37px;
+}
+
+.original-film-name {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  padding-left: 25px;
+}
+
+.genre-list {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  padding-left: 52px;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+
+.film-description {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+
+.button-wrapper {
+  margin-bottom: 40px;
+  max-width: 270px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-icon {
+  width: 130px;
+  height: 44px;
+  border-radius: 5px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.video-icon {
+  margin-right: 5px;
+}
+
+.button-icon:hover {
+  color: #f7f7f7;
+  background-color: #ff6b01;
+}
+.btn_library.button-icon {
+  background: rgba(255, 255, 255, 0);
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  margin-left: 20px;
+}
+
+.btn_library.button-icon.active_btn {
+  background-color: rgb(255, 107, 8, 1);
+  border: 1px solid #ff6b01;
+}
+/* FOOTER */
+
+.footer {
+  display: block;
+  text-align: center;
+  padding: 30px 0 0;
+  background-color: #f7f7f7;
+  color: #545454;
+  height: 100px;
+}
+
+.footer-container {
+  text-align: center;
+  padding: 0 40px;
+}
+
+.footer-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #545454;
+}
+
+.footer-link {
+  color: #545454;
+}
 
 /* MEDIA MOBILE */
 
 @media (min-width: 320px) and (max-width: 767px) {
   .header {
-    background-image: url(./img/img_header/header_bckg768.jpg);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg768.jpg);
   }
 }
 
@@ -181,7 +457,20 @@ h2 {
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .header {
-    background-image: url(./img/img_header/header_bckg1024.jpg);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg1024.jpg);
+  }
+  .logo {
+    width: 175px;
+  }
+
+  .logo-text {
+    font-size: 30px;
+    visibility: visible;
   }
 
   .header__container {
@@ -203,6 +492,7 @@ h2 {
   h2 {
     padding: 4px 0px 0px 0px;
     margin: 0;
+    width: 280px;
   }
   .genres {
     margin: 0;
@@ -211,12 +501,58 @@ h2 {
   li {
     margin: 0;
   }
+  .single-page {
+    min-width: 760px;
+    margin: 0;
+    padding: 0;
+  }
+  .poster {
+    margin: 0px 0px 0px 40px;
+    float: left;
+    width: 350px;
+  }
+
+  .description-wrapper {
+    margin: 0;
+    float: left;
+    width: 350px;
+    margin: 0px 0px 0px 30px;
+    padding-top: 0;
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
 }
 
 /* MEDIA DESKTOP */
 @media (min-width: 1024px) {
+  .logo {
+    width: 175px;
+  }
+
+  .logo-text {
+    font-size: 30px;
+    visibility: visible;
+  }
+
   .header {
-    background-image: url(./img/img_header/header_bckg1024.jpg);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/header_bckg1024.jpg);
+  }
+  .header.header-libraty-img {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(./img/img_header/Rectangle1024.png);
   }
 
   .header__container {
@@ -245,7 +581,25 @@ h2 {
   li {
     margin: 0;
   }
+  .single-page {
+    min-width: 1000px;
+  }
+  .poster {
+    margin: 0px 0px 0px 70px;
+    float: left;
+    width: 500px;
+  }
+
+  .description-wrapper {
+    margin: 0;
+    float: left;
+    width: 500px;
+    margin: 0px 0px 0px 80px;
+    padding-top: 0;
+  }
 }
+
+/*pagination */
 
 .pages_list {
   display: flex;
@@ -253,7 +607,6 @@ h2 {
 }
 
 #pagination {
- 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -281,7 +634,7 @@ h2 {
   position: relative;
   top: 0px;
   left: 0px;
-  transform: translate(0%, 70%);
+  transform: translate(70%, 70%);
 }
 .arrowRightWrapper {
   position: relative;
@@ -297,8 +650,7 @@ h2 {
 }
 #ar {
   position: relative;
-  transform: translate(0%, 70%);
- 
+  transform: translate(70%, 70%);
 }
 
 .pages_list > a {
