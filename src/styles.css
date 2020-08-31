@@ -352,6 +352,11 @@ h2 {
 /* MAIN */
 /* one film  */
 
+.container_single {
+  max-height: 500px;
+  overflow: auto;
+}
+
 .single-page {
   width: 320px;
   margin: 0 auto;
@@ -489,6 +494,7 @@ h3 {
 .button-icon:hover {
   color: #f7f7f7;
   background-color: #ff6b01;
+  border: transparent;
 }
 .btn_library.button-icon {
   background: rgba(255, 255, 255, 0);
@@ -557,6 +563,7 @@ h3 {
       ),
       url('../src/img/img_header/header_bckg_single.jpg');
   }
+
 }
 
 /* MEDIA TABLET */
@@ -598,6 +605,10 @@ h3 {
     width: 768px;
   }
 
+  .container_single {
+    max-height: 500px;
+    overflow: auto;
+  }
   .movies_list {
     display: flex;
     justify-content: space-between;
@@ -690,6 +701,10 @@ h3 {
   }
   .container {
     width: 1000px;
+  }
+  .container_single {
+    max-height: 500px;
+    overflow: auto;
   }
   h2 {
     padding: 4px 0px 0px 0px;

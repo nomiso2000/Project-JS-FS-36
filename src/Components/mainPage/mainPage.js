@@ -18,7 +18,7 @@ export async function getId(e) {
 
     const result = await API.getMovieByID(filmId);
     const newMurk = singlePage(result.data);
-
+    refs.container.classList.add('container_single')
     refs.container.innerHTML = newMurk;
     const watchedBtn = document.querySelector('[data-action="watched-films"]');
     const queueBtn = document.querySelector('[data-action="queue-films"]');

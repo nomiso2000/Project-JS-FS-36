@@ -26,6 +26,7 @@
   border-radius: 5px;
   cursor: pointer;
   border: transparent;
+  padding-left: 10px;
 
   /* transform: matrix(-1, 0, 0, 1, 0, 0); */
 }
@@ -47,6 +48,7 @@
   background: #f7f7f7;
   border-radius: 5px;
   cursor: pointer;
+  padding-left: 10px;
 }
 .ar {
   position: relative;
